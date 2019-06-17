@@ -35,9 +35,9 @@ while time*paceOfTime < END_YEAR-START_YEAR+1: # time =t*365
 
 print(len(S))
 # print(len(numpy.arange(START_YEAR,END_YEAR+paceOfTime)))
-plt.scatter(X,S,c='b',marker=',',s= 2,edgecolor='none')
-plt.scatter(X,I,c='c',marker=',',s= 2,edgecolor='none')
-plt.scatter(X,R,c='g',marker=',',s= 2,edgecolor='none')
+plt.scatter(X,S,c='b--',marker=',',s= 2,edgecolor='none')
+plt.scatter(X,I,c='c--',marker=',',s= 2,edgecolor='none')
+plt.scatter(X,R,c='g--',marker=',',s= 2,edgecolor='none')
 plt.legend(['S','I','R'])
 plt.xlabel('Year')
 plt.ylabel('Population')
