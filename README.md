@@ -1,0 +1,2 @@
+# SIR-MCMC
+Python homework
