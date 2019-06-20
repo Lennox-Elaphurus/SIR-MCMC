@@ -1,13 +1,14 @@
 import matplotlib.pyplot as plt
 import math
 
-fig = r'F:/Academy/Python and Computational biology/17-20190617/simulation'
+fig = r'simulation'
 
 # parameters
 t0 = 2008
 dt = 1/365
-mu = 0.02
+mu = 1/50
 gamma = 22
+reportRate=0.5
 
 # initial population
 pop = 5000000

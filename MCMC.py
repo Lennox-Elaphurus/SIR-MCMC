@@ -63,8 +63,8 @@ for i in range(MAX_PACE):
     # print("R:",R)
     if random.random() < R:
         if len(A)> 1:
-            lastA = A[len(A) - 1]
-            lastB = B[len(B) - 1]
+            lastA = A[-1]
+            lastB = B[-1]
             if abs(a-lastA)+abs(b-lastB) < E:
                 Continue=Continue+1
                 if Continue%10 == 0:# 10 was set by hand
