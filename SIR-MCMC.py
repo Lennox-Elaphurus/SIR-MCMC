@@ -24,7 +24,7 @@ E=1   # 3我之前不能收敛是因为这个调得太小了
 E0=E
 lastE=E
 Continue=0
-MIN_CONTINUE=15
+MIN_CONTINUE=100
 
 global mu
 mu = 1/50
@@ -130,7 +130,7 @@ def get_likelihood(this_sigma):
             # lk2=lk2+float(norm.logpdf(points[i2][1], Infe[i2]*reportRate, 1000))
             lk2 = lk2+abs(points[i2][1]-Infe[i2]*reportRate)**5
         except OverflowError:
-            print("An OverflowError occurred in abs**2.")
+            print("An OverflowError occurred in abs**5.")
             ignore=True
             break
     lk2=lk2*1e-21  # just to decrease the lk
@@ -152,7 +152,8 @@ def draw():
     real_i=[]
     for i in range(len(points)):
         t.append(points[i][0])
-        real_i.append(points[i][1]/reportRate)
+        real_i.append(points[i][1])
+        Infe[i]=Infe[i]*reportRate
     plt.ion()# 绘图或者从磁盘读取图像并进行图像处理操作
     # plt.scatter(t,real_i,c='b',marker='.',s= 10,edgecolor='none')
     # plt.scatter(t,Infe,c='r',marker='.',s= 20,edgecolor='none')
@@ -173,6 +174,7 @@ def draw():
 
 import_data("sir_case.csv")
 # MCMC
+isMCMC=True
 estimate(lastGamma)
 lastLk=get_likelihood(sigma)
 GAMMA.append(lastGamma)
@@ -196,14 +198,17 @@ for cnt_step in range(MAX_PACE):
         else:
             Ratio=0
     if ignore is False and random.random() < Ratio:
+        if isMCMC is False:
+            if Ratio<1:
+                continue
         if abs(gamma - lastGamma) < E:
             Continue = Continue + 1
             if Continue % 5 == 0:  # 5 was set by hand
                 if E>0.01:
                     E=E/2
-                    sigma = sigma / 2  # 2 was set by hand
-                else:
-                    E=1
+                    sigma = sigma / 5  # 2 was set by hand
+                # else:
+                #     E=1
                 # need to estimate again when sigma changed
                 estimate(lastGamma)
                 lastLk=get_likelihood(sigma)
@@ -220,7 +225,7 @@ for cnt_step in range(MAX_PACE):
         lastGamma = gamma
         lastLk=lk
         GAMMA.append(lastGamma)
-        # print("Accepted Ratio:", Ratio)
+        print("Accepted Ratio:", Ratio)
         print("Accepted gamma:",lastGamma)
         # print("lk:",lk)
         if not sigma==sigma0:
@@ -228,8 +233,9 @@ for cnt_step in range(MAX_PACE):
             lastSigma=sigma
             lastE=E
         # draw()
-    if cnt_step % 1000 == 0:
+    if cnt_step % 10000 == 0:
         print("count step:", cnt_step)
+        # isMCMC = False
         # draw()
 
 print("Final answer:",lastGamma)
