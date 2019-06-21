@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ecab633-6cef-4190-bfe9-9cde1f35c95f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SIR-MCMC.py" beforeDir="false" afterPath="$PROJECT_DIR$/SIR-MCMC.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulation.png" beforeDir="false" afterPath="$PROJECT_DIR$/simulation.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sir_case.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sir_case.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,12 +19,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="87" column="13" lean-forward="true" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+            <state relative-caret-position="41">
+              <caret line="201" column="26" lean-forward="true" selection-start-line="201" selection-start-column="26" selection-end-line="201" selection-end-column="26" />
               <folding>
                 <element signature="e#19#32#0" expanded="true" />
-                <element signature="e#505#568#0" />
                 <element signature="e#288#786#0" />
+                <element signature="e#1367#2038#0" />
+                <element signature="e#2728#3426#0" />
               </folding>
             </state>
           </provider>
@@ -29,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MCMC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2308">
+            <state relative-caret-position="-2721">
               <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="16" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -41,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9">
-              <caret line="46" selection-start-line="46" selection-end-line="47" selection-end-column="19" />
+            <state relative-caret-position="583">
+              <caret line="52" column="1" selection-start-line="51" selection-start-column="48" selection-end-line="52" selection-end-column="1" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -52,6 +57,13 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>t0</find>
@@ -60,6 +72,8 @@
       <find>I</find>
       <find>GAMMA</find>
       <find>R0</find>
+      <find>log</find>
+      <find>BETA</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -71,11 +85,12 @@
         <option value="F:/Academy/Python and Computational biology/17-20190617/simulation.py" />
         <option value="$PROJECT_DIR$/MCMC.py" />
         <option value="$PROJECT_DIR$/simulation.py" />
+        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/SIR-MCMC.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="960" />
     <option name="width" value="960" />
     <option name="height" value="1030" />
@@ -127,6 +142,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="gamma" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SIR-MCMC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="E:/微信下载/WeChat Files/feixvedehenji/FileStorage/File/2019-06" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="E:/微信下载/WeChat Files/feixvedehenji/FileStorage/File/2019-06/gamma.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="simulation" type="PythonConfigurationType" factoryName="Python">
       <module name="SIR-MCMC" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -148,9 +184,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SIR-MCMC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.SIR-MCMC" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.gamma" />
       </list>
     </recent_temporary>
   </component>
@@ -176,15 +235,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="768" y="0" width="768" height="824" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0625" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.029960053" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49933422" visible="true" weight="0.32917318" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49933422" visible="true" weight="0.67480916" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -232,9 +290,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://E:/微信下载/WeChat Files/feixvedehenji/FileStorage/File/2019-06/gamma.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="27" column="10" lean-forward="true" selection-start-line="67" selection-start-column="51" selection-end-line="67" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MCMC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2308">
+        <state relative-caret-position="-2721">
           <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="16" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -244,22 +309,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simulation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="46" selection-start-line="46" selection-end-line="47" selection-end-column="19" />
+        <state relative-caret-position="583">
+          <caret line="52" column="1" selection-start-line="51" selection-start-column="48" selection-end-line="52" selection-end-column="1" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="87" column="13" lean-forward="true" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+        <state relative-caret-position="41">
+          <caret line="201" column="26" lean-forward="true" selection-start-line="201" selection-start-column="26" selection-end-line="201" selection-end-column="26" />
           <folding>
             <element signature="e#19#32#0" expanded="true" />
-            <element signature="e#505#568#0" />
             <element signature="e#288#786#0" />
+            <element signature="e#1367#2038#0" />
+            <element signature="e#2728#3426#0" />
           </folding>
         </state>
       </provider>

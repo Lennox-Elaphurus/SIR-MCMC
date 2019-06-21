@@ -4,18 +4,22 @@ from scipy.stats import norm
 import math
 import matplotlib.pyplot as plt
 
-MAX_PACE=10000000
+MAX_PACE=100000
 fig = r'simulation'
 START_YEAR = 2008
 END_YEAR=2020
 dt = 1/52
-gamma =0
-lastGamma=20 # 22
+gamma = 50
+lastGamma = 50 # 22
 Ratio=0
 GAMMA=[]
 
-sigma=10
-E=0.001
+global reportRate
+reportRate=0.2
+global sigma
+sigma=2.5
+sigma0=sigma
+E=0.5   # 我之前不能收敛是因为这个调得太小了
 Continue=0
 MIN_CONTINUE=100
 
@@ -24,8 +28,7 @@ mu = 1/50
 s0 = 26 / 400
 i0 = 0.002
 r0 = 1
-global reportRate
-reportRate=0.5
+
 global pop
 pop = 5000000  # initial population
 s0 = 26 / 400
@@ -44,14 +47,16 @@ Infe = [I0]
 global R
 R=[R0]
 LK=[]
+global ignore
+ignore=False
 
 
 def get_beta(index):
     return float(180 * (5 + 2 * math.sin(math.pi * index* dt + 5)))
 
 
-global BETA
-BETA=[get_beta(0)]
+# global BETA
+# BETA=[get_beta(0)]
 global points
 points=[]
 
@@ -104,7 +109,7 @@ def estimate(this_gamma):  # directly write to global S,I,R
         s2 = s1 + (mu * pop - beta * s1 * i1 / pop - mu * s1) * dt
         i2 = i1 + (beta * s1 * i1 / pop - this_gamma * i1 - mu * i1) * dt
         r2 = r1 + (this_gamma * i1 - mu * r1) * dt
-        BETA.append(beta)
+        # BETA.append(beta)
         S.append(s2)
         Infe.append(i2)
         R.append(r2)
@@ -114,21 +119,31 @@ def get_likelihood(this_sigma):
     global points
     global Infe
     global reportRate
+    global ignore
     lk2=0
     for i2 in range(len(points)):
-        lk2=lk2+float(norm.logpdf(points[i2][1], Infe[i2]*reportRate, this_sigma))
-        # print(points[i2][1],Infe[i2]*reportRate)
+        # lk2=lk2+float(norm.logpdf(points[i2][1], Infe[i2]*reportRate, this_sigma))
+        try:
+            lk2 = lk2+abs(points[i2][1]-Infe[i2]*reportRate)**5
+        except OverflowError:
+            print("An OverflowError occurred in abs**2.")
+            ignore=True
+    lk2=lk2*1e-016  # just to increase the lk
     return lk2
 
 
 def draw():
     global points
     global Infe
+    global gamma
+    global sigma
+    global reportRate
+    global lk
     t=[]
     real_i=[]
     for i in range(len(points)):
         t.append(points[i][0])
-        real_i.append(points[i][1])
+        real_i.append(points[i][1]/reportRate)
     plt.ion()# 绘图或者从磁盘读取图像并进行图像处理操作
     plt.scatter(t,real_i,c='b',marker=',',s= 2,edgecolor='none')
     plt.scatter(t,Infe,c='r',marker=',',s= 2,edgecolor='none')
@@ -138,6 +153,8 @@ def draw():
     plt.savefig(fig)
     plt.xlabel('Year')
     plt.ylabel('Population')
+    plt.suptitle("Gamma"+str(gamma))
+    plt.title("Sigma:"+str(sigma)+" lk:"+str(lk))
     plt.show()
     plt.pause(5)
     plt.close()
@@ -148,27 +165,30 @@ import_data("sir_case.csv")
 estimate(lastGamma)
 lastLk=get_likelihood(sigma)
 GAMMA.append(lastGamma)
+print("First gamma:",lastGamma,"First lk:",lastLk)
 # print(lastLk)
-for i in range(MAX_PACE):
+for cnt_step in range(MAX_PACE):
     gamma=float(norm.rvs(lastGamma, sigma, 1))
+    ignore=False
     estimate(gamma)
     lk=get_likelihood(sigma)
     try:
-        Ratio = math.exp(lastLk - lk)
+        # Ratio = math.exp(lastLk - lk)
+        Ratio=lastLk/lk
     except OverflowError:
         # directly accept
-        print("An OverflowError occurred.")
-        print("lastLk:", lastLk, "lk:", lk)
-        print("lastLk - lk", lastLk - lk)
+        print("An OverflowError occurred in exp.")
+        # print("lastLk:", lastLk, "lk:", lk)
+        # print("lastLk - lk", lastLk - lk)
         if lk<lastLk:
             Ratio=1
         else:
             Ratio=0
-    if random.random() < Ratio:
+    if ignore is False and random.random() < Ratio:
         if abs(gamma - lastGamma) < E:
             Continue = Continue + 1
-            if Continue % 10 == 0:  # 10 was set by hand
-                sigma = sigma / 5  # 5 was set by hand
+            if Continue % 5 == 0:  # 5 was set by hand
+                sigma = sigma / 1.1  # 1.5 was set by hand
                 # need to estimate again when sigma changed
                 estimate(lastGamma)
                 lastLk=get_likelihood(sigma)
@@ -179,12 +199,20 @@ for i in range(MAX_PACE):
                 break
         else:
             Continue = 0
+            # sigma=sigma0
 
         lastGamma = gamma
         lastLk=lk
         GAMMA.append(lastGamma)
         print("Accepted Ratio:", Ratio)
         print("Accepted gamma:",lastGamma)
-        draw()
+        print("lk:",lk)
+        if not sigma==sigma0:
+            print("Sigma:",sigma)
+        # draw()
+    if cnt_step % 1000 == 0:
+        print("count step:", cnt_step)
+        # draw()
 
 print("Final answer:",lastGamma)
+draw()
