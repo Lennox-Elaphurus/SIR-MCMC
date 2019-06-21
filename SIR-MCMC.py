@@ -4,7 +4,7 @@ from scipy.stats import norm
 import math
 import matplotlib.pyplot as plt
 
-MAX_PACE=10000
+MAX_PACE=10000000
 fig = r'simulation'
 START_YEAR = 2008
 END_YEAR=2020
@@ -15,7 +15,7 @@ Ratio=0
 GAMMA=[]
 
 global reportRate
-reportRate=0.5
+reportRate=0.2
 global sigma
 sigma=5
 sigma0=sigma
@@ -24,7 +24,7 @@ E=1   # 3我之前不能收敛是因为这个调得太小了
 E0=E
 lastE=E
 Continue=0
-MIN_CONTINUE=30
+MIN_CONTINUE=15
 
 global mu
 mu = 1/50
@@ -198,13 +198,12 @@ for cnt_step in range(MAX_PACE):
     if ignore is False and random.random() < Ratio:
         if abs(gamma - lastGamma) < E:
             Continue = Continue + 1
-            if Continue % 10 == 0:  # 5 was set by hand
+            if Continue % 5 == 0:  # 5 was set by hand
                 if E>0.01:
                     E=E/2
-                    sigma = sigma / 1.1  # 2 was set by hand
+                    sigma = sigma / 2  # 2 was set by hand
                 else:
                     E=1
-                    sigma=sigma0
                 # need to estimate again when sigma changed
                 estimate(lastGamma)
                 lastLk=get_likelihood(sigma)
