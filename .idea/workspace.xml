@@ -4,6 +4,7 @@
     <list default="true" id="9ecab633-6cef-4190-bfe9-9cde1f35c95f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/SIR-MCMC.py" beforeDir="false" afterPath="$PROJECT_DIR$/SIR-MCMC.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simulation.png" beforeDir="false" afterPath="$PROJECT_DIR$/simulation.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,12 +17,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="162" column="22" lean-forward="true" selection-start-line="162" selection-start-column="22" selection-end-line="162" selection-end-column="22" />
+            <state relative-caret-position="82">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#19#32#0" expanded="true" />
-                <element signature="e#1500#2277#0" />
-                <element signature="e#2314#2861#0" />
+                <element signature="e#288#786#0" />
+                <element signature="e#1367#2038#0" />
+                <element signature="e#2728#3426#0" />
               </folding>
             </state>
           </provider>
@@ -30,7 +32,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MCMC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
+            <state relative-caret-position="-2721">
               <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="16" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -42,7 +44,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2091">
+            <state relative-caret-position="583">
               <caret line="52" column="1" selection-start-line="51" selection-start-column="48" selection-end-line="52" selection-end-column="1" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
@@ -86,7 +88,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="960" />
     <option name="width" value="960" />
     <option name="height" value="1030" />
@@ -96,8 +98,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -238,8 +240,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49933422" visible="true" weight="0.5236641" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.2" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49933422" weight="0.37099236" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -257,7 +259,16 @@
     <option name="LAST_COMMIT_MESSAGE" value="Update SIR-MCMC.py" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://F:/Academy/Python and Computational biology/17-20190617/simulation.py" />
+    <entry file="file://F:/Academy/Python and Computational biology/17-20190617/simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="41" column="10" lean-forward="true" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://F:/Academy/Python and Computational biology/16-20190610/SIR-MCMC.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -284,10 +295,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/MCMC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
+        <state relative-caret-position="-2721">
           <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="16" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -297,7 +307,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simulation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2091">
+        <state relative-caret-position="583">
           <caret line="52" column="1" selection-start-line="51" selection-start-column="48" selection-end-line="52" selection-end-column="1" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -305,21 +315,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/scipy/stats/_continuous_distns.py">
+    <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="165" selection-start-line="165" selection-end-line="165" />
+        <state relative-caret-position="41">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="162" column="22" lean-forward="true" selection-start-line="162" selection-start-column="22" selection-end-line="162" selection-end-column="22" />
+        <state relative-caret-position="82">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#19#32#0" expanded="true" />
-            <element signature="e#1500#2277#0" />
-            <element signature="e#2314#2861#0" />
+            <element signature="e#288#786#0" />
+            <element signature="e#1367#2038#0" />
+            <element signature="e#2728#3426#0" />
           </folding>
         </state>
       </provider>
