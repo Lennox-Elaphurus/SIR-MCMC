@@ -2,6 +2,7 @@
 import random
 from scipy.stats import norm
 import math
+import matplotlib.pyplot as plt
 
 MAX_PACE=10000000
 fig = r'simulation'
@@ -74,11 +75,6 @@ def import_data(file_location):   # sir_case.csv
                 flag=True
 
 
-import_data("sir_case.csv")
-# for i in range(int((END_YEAR-START_YEAR)/dt)):
-#     print(points[i][1])
-
-
 def estimate(this_gamma):  # directly write to global S,I,R
     global S0
     global I0
@@ -89,6 +85,7 @@ def estimate(this_gamma):  # directly write to global S,I,R
     global BETA
     global pop
     global mu
+    global dt
     # state variable/list
     # print(type(R))
     S.clear()
@@ -99,18 +96,18 @@ def estimate(this_gamma):  # directly write to global S,I,R
     R.append(R0)
     # update state variables each day
     for i in range(1,int((END_YEAR - START_YEAR)/dt)+1):
-        S0 = S[-1]
-        I0 = Infe[-1]
-        R0 = R[-1]
+        s1 = S[-1]
+        i1 = Infe[-1]
+        r1 = R[-1]
         pop = S0 + I0 + R0
         beta=get_beta(i)
-        s1 = S0 + (mu * pop - beta * S0 * I0 / pop - mu * S0) * dt
-        i1 = I0 + (beta * S0 * I0 / pop - this_gamma * I0 - mu * I0) * dt
-        r1 = R0 + (this_gamma * I0 - mu * R0) * dt
+        s2 = s1 + (mu * pop - beta * s1 * i1 / pop - mu * s1) * dt
+        i2 = i1 + (beta * s1 * i1 / pop - this_gamma * i1 - mu * i1) * dt
+        r2 = r1 + (this_gamma * i1 - mu * r1) * dt
         BETA.append(beta)
-        S.append(s1)
-        Infe.append(i1)
-        R.append(r1)
+        S.append(s2)
+        Infe.append(i2)
+        R.append(r2)
 
 
 def get_likelihood(this_sigma):
@@ -120,15 +117,40 @@ def get_likelihood(this_sigma):
     lk2=0
     for i2 in range(len(points)):
         lk2=lk2+float(norm.logpdf(points[i2][1], Infe[i2]*reportRate, this_sigma))
+        # print(points[i2][1],Infe[i2]*reportRate)
     return lk2
 
 
+def draw():
+    global points
+    global Infe
+    t=[]
+    real_i=[]
+    for i in range(len(points)):
+        t.append(points[i][0])
+        real_i.append(points[i][1])
+    plt.ion()# 绘图或者从磁盘读取图像并进行图像处理操作
+    plt.scatter(t,real_i,c='b',marker=',',s= 2,edgecolor='none')
+    plt.scatter(t,Infe,c='r',marker=',',s= 2,edgecolor='none')
+    # plt.plot(t,real_i, 'b')
+    # plt.plot(t,Infe, 'g')
+    plt.legend(['real','estimate'])
+    plt.savefig(fig)
+    plt.xlabel('Year')
+    plt.ylabel('Population')
+    plt.show()
+    plt.pause(5)
+    plt.close()
+
+
+import_data("sir_case.csv")
 # MCMC
 estimate(lastGamma)
 lastLk=get_likelihood(sigma)
+GAMMA.append(lastGamma)
 # print(lastLk)
 for i in range(MAX_PACE):
-    gamma=abs(float(norm.rvs(lastGamma, sigma, 1)))
+    gamma=float(norm.rvs(lastGamma, sigma, 1))
     estimate(gamma)
     lk=get_likelihood(sigma)
     try:
@@ -143,27 +165,26 @@ for i in range(MAX_PACE):
         else:
             Ratio=0
     if random.random() < Ratio:
-        if len(GAMMA) > 1:
-            lastGamma = GAMMA[-1]
-            if abs(gamma - lastGamma) < E:
-                Continue = Continue + 1
-                if Continue % 10 == 0:  # 10 was set by hand
-                    sigma = sigma / 5  # 5 was set by hand
-                    # need to estimate again when sigma changed
-                    estimate(lastGamma)
-                    lastLk=get_likelihood(sigma)
-                    print("Adjust sigma to ", sigma)
-                if Continue > MIN_CONTINUE:
-                    print("Stop by sufficiently accurate answer.")
-                    print("Last accepted Ratio:", Ratio)
-                    break
-            else:
-                Continue = 0
+        if abs(gamma - lastGamma) < E:
+            Continue = Continue + 1
+            if Continue % 10 == 0:  # 10 was set by hand
+                sigma = sigma / 5  # 5 was set by hand
+                # need to estimate again when sigma changed
+                estimate(lastGamma)
+                lastLk=get_likelihood(sigma)
+                print("Adjust sigma to ", sigma)
+            if Continue > MIN_CONTINUE:
+                print("Stop by sufficiently accurate answer.")
+                print("Last accepted Ratio:", Ratio)
+                break
+        else:
+            Continue = 0
 
         lastGamma = gamma
         lastLk=lk
         GAMMA.append(lastGamma)
         print("Accepted Ratio:", Ratio)
         print("Accepted gamma:",lastGamma)
+        draw()
 
 print("Final answer:",lastGamma)
