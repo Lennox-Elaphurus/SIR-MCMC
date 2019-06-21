@@ -9,8 +9,8 @@ fig = r'simulation'
 START_YEAR = 2008
 END_YEAR=2020
 dt = 1/52
-gamma = 50
-lastGamma = 50 # 22
+gamma = 0
+lastGamma =50 # 22
 Ratio=0
 GAMMA=[]
 
@@ -19,7 +19,10 @@ reportRate=0.2
 global sigma
 sigma=2.5
 sigma0=sigma
-E=0.5   # 我之前不能收敛是因为这个调得太小了
+lastSigma=sigma
+E=2   # 我之前不能收敛是因为这个调得太小了
+E0=E
+lastE=E
 Continue=0
 MIN_CONTINUE=100
 
@@ -187,8 +190,9 @@ for cnt_step in range(MAX_PACE):
     if ignore is False and random.random() < Ratio:
         if abs(gamma - lastGamma) < E:
             Continue = Continue + 1
-            if Continue % 5 == 0:  # 5 was set by hand
-                sigma = sigma / 1.1  # 1.5 was set by hand
+            if Continue % 10 == 0:  # 5 was set by hand
+                E=E/1.1
+                sigma = sigma / 1.1  # 1.1 was set by hand
                 # need to estimate again when sigma changed
                 estimate(lastGamma)
                 lastLk=get_likelihood(sigma)
@@ -199,16 +203,20 @@ for cnt_step in range(MAX_PACE):
                 break
         else:
             Continue = 0
-            # sigma=sigma0
+            sigma=lastSigma
+            E=lastE
 
         lastGamma = gamma
         lastLk=lk
         GAMMA.append(lastGamma)
         print("Accepted Ratio:", Ratio)
         print("Accepted gamma:",lastGamma)
-        print("lk:",lk)
+        # print("lk:",lk)
         if not sigma==sigma0:
             print("Sigma:",sigma)
+            print("E",E)
+            lastSigma=sigma
+            lastE=E
         # draw()
     if cnt_step % 1000 == 0:
         print("count step:", cnt_step)

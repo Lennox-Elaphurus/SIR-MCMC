@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ecab633-6cef-4190-bfe9-9cde1f35c95f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SIR-MCMC.py" beforeDir="false" afterPath="$PROJECT_DIR$/SIR-MCMC.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simulation.png" beforeDir="false" afterPath="$PROJECT_DIR$/simulation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sir_case.csv" beforeDir="false" afterPath="$PROJECT_DIR$/sir_case.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="201" column="26" lean-forward="true" selection-start-line="201" selection-start-column="26" selection-end-line="201" selection-end-column="26" />
+            <state relative-caret-position="82">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#19#32#0" expanded="true" />
                 <element signature="e#288#786#0" />
@@ -242,7 +240,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49933422" visible="true" weight="0.67480916" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49933422" weight="0.37099236" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -326,8 +324,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="201" column="26" lean-forward="true" selection-start-line="201" selection-start-column="26" selection-end-line="201" selection-end-column="26" />
+        <state relative-caret-position="82">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#19#32#0" expanded="true" />
             <element signature="e#288#786#0" />
