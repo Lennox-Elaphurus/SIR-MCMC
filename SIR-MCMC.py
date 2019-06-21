@@ -206,7 +206,7 @@ for cnt_step in range(MAX_PACE):
             if Continue % 5 == 0:  # 5 was set by hand
                 if E>0.01:
                     E=E/2
-                    sigma = sigma / 5  # 2 was set by hand
+                    sigma = sigma /2  # 2 was set by hand
                 # else:
                 #     E=1
                 # need to estimate again when sigma changed
