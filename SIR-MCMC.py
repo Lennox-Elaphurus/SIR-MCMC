@@ -4,7 +4,7 @@ from scipy.stats import norm
 import math
 import matplotlib.pyplot as plt
 
-MAX_PACE=100000
+MAX_PACE=10000000
 fig = r'simulation'
 START_YEAR = 2008
 END_YEAR=2020
@@ -17,14 +17,14 @@ GAMMA=[]
 global reportRate
 reportRate=0.2
 global sigma
-sigma=2.5
+sigma=5
 sigma0=sigma
 lastSigma=sigma
-E=2   # 我之前不能收敛是因为这个调得太小了
+E=1   # 3我之前不能收敛是因为这个调得太小了
 E0=E
 lastE=E
 Continue=0
-MIN_CONTINUE=100
+MIN_CONTINUE=15
 
 global mu
 mu = 1/50
@@ -125,13 +125,16 @@ def get_likelihood(this_sigma):
     global ignore
     lk2=0
     for i2 in range(len(points)):
-        # lk2=lk2+float(norm.logpdf(points[i2][1], Infe[i2]*reportRate, this_sigma))
         try:
+            # if points[i2][1] Infe[i2]*reportRate
+            # lk2=lk2+float(norm.logpdf(points[i2][1], Infe[i2]*reportRate, 1000))
             lk2 = lk2+abs(points[i2][1]-Infe[i2]*reportRate)**5
         except OverflowError:
             print("An OverflowError occurred in abs**2.")
             ignore=True
-    lk2=lk2*1e-016  # just to increase the lk
+            break
+    lk2=lk2*1e-21  # just to decrease the lk
+    # print("lk2",lk2)
     return lk2
 
 
@@ -142,25 +145,30 @@ def draw():
     global sigma
     global reportRate
     global lk
+    global fig
+    global reportRate
+    global E
     t=[]
     real_i=[]
     for i in range(len(points)):
         t.append(points[i][0])
         real_i.append(points[i][1]/reportRate)
     plt.ion()# 绘图或者从磁盘读取图像并进行图像处理操作
-    plt.scatter(t,real_i,c='b',marker=',',s= 2,edgecolor='none')
-    plt.scatter(t,Infe,c='r',marker=',',s= 2,edgecolor='none')
-    # plt.plot(t,real_i, 'b')
-    # plt.plot(t,Infe, 'g')
+    # plt.scatter(t,real_i,c='b',marker='.',s= 10,edgecolor='none')
+    # plt.scatter(t,Infe,c='r',marker='.',s= 20,edgecolor='none')
+    plt.plot(t,real_i, 'r')
+    plt.plot(t,Infe, 'b')
     plt.legend(['real','estimate'])
     plt.savefig(fig)
     plt.xlabel('Year')
     plt.ylabel('Population')
-    plt.suptitle("Gamma"+str(gamma))
-    plt.title("Sigma:"+str(sigma)+" lk:"+str(lk))
+    plt.suptitle("Gamma="+str(gamma)+" Report Rate="+str(reportRate))
+    plt.title("Sigma="+str(sigma)+" E="+str(E))
     plt.show()
     plt.pause(5)
+    plt.savefig(fig)
     plt.close()
+
 
 
 import_data("sir_case.csv")
@@ -190,9 +198,12 @@ for cnt_step in range(MAX_PACE):
     if ignore is False and random.random() < Ratio:
         if abs(gamma - lastGamma) < E:
             Continue = Continue + 1
-            if Continue % 10 == 0:  # 5 was set by hand
-                E=E/1.1
-                sigma = sigma / 1.1  # 1.1 was set by hand
+            if Continue % 5 == 0:  # 5 was set by hand
+                if E>0.01:
+                    E=E/2
+                    sigma = sigma / 2  # 2 was set by hand
+                else:
+                    E=1
                 # need to estimate again when sigma changed
                 estimate(lastGamma)
                 lastLk=get_likelihood(sigma)
@@ -209,12 +220,11 @@ for cnt_step in range(MAX_PACE):
         lastGamma = gamma
         lastLk=lk
         GAMMA.append(lastGamma)
-        print("Accepted Ratio:", Ratio)
+        # print("Accepted Ratio:", Ratio)
         print("Accepted gamma:",lastGamma)
         # print("lk:",lk)
         if not sigma==sigma0:
-            print("Sigma:",sigma)
-            print("E",E)
+            print("Sigma=",sigma," E=",E)
             lastSigma=sigma
             lastE=E
         # draw()
