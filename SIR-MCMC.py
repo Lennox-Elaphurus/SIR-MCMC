@@ -15,7 +15,7 @@ Ratio=0
 GAMMA=[]
 
 global reportRate
-reportRate=0.2
+reportRate=0.23
 global sigma
 sigma=5
 sigma0=sigma
