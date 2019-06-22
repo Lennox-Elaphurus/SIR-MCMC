@@ -203,14 +203,14 @@ for cnt_step in range(MAX_PACE):
                 continue
         if abs(gamma - lastGamma) < E:
             Continue = Continue + 1
-            if Continue % 10 == 0 and E>0.0001:  # 5 was set by hand
+            if Continue % 5 == 0:  # 5 was set by hand
                 lastE=E
                 E=E/2
                 lastSigma=sigma
-                sigma = sigma /2  # 2 was set by hand
-            if Continue % 20 == 0:
-                lastSigma = sigma
-                sigma = sigma / 2
+                sigma = sigma /5  # 2 was set by hand
+            # if Continue % 20 == 0:
+            #     lastSigma = sigma
+            #     sigma = sigma / 2
                 # else:
                 #     E=1
                 # need to estimate again when sigma changed
