@@ -4,7 +4,7 @@ from scipy.stats import norm
 import math
 import matplotlib.pyplot as plt
 
-MAX_PACE=10000000
+MAX_PACE=100000
 fig = r'simulation'
 START_YEAR = 2008
 END_YEAR=2020
@@ -172,7 +172,7 @@ def draw():
 
 
 
-import_data("sir_case.csv")
+import_data("cases_obs_final.csv")
 # MCMC
 isMCMC=True
 estimate(lastGamma)
@@ -204,9 +204,9 @@ for cnt_step in range(MAX_PACE):
         if abs(gamma - lastGamma) < E:
             Continue = Continue + 1
             if Continue % 5 == 0:  # 5 was set by hand
-                if E>0.01:
+                if E>0.1:
                     E=E/2
-                    sigma = sigma /2  # 2 was set by hand
+                sigma = sigma /2  # 2 was set by hand
                 # else:
                 #     E=1
                 # need to estimate again when sigma changed
