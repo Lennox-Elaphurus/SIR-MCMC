@@ -10,7 +10,7 @@ START_YEAR = 2008
 END_YEAR=2020
 dt = 1/52
 gamma = 0
-lastGamma =50 # 22
+lastGamma =100 # 22
 Ratio=0
 GAMMA=[]
 
@@ -203,10 +203,14 @@ for cnt_step in range(MAX_PACE):
                 continue
         if abs(gamma - lastGamma) < E:
             Continue = Continue + 1
-            if Continue % 5 == 0:  # 5 was set by hand
-                if E>0.1:
-                    E=E/2
+            if Continue % 5 == 0 and E>0.1:  # 5 was set by hand
+                lastE=E
+                E=E/2
+                lastSigma=sigma
                 sigma = sigma /2  # 2 was set by hand
+            if Continue % 10 == 0:
+                lastSigma = sigma
+                sigma = sigma / 2
                 # else:
                 #     E=1
                 # need to estimate again when sigma changed
@@ -230,8 +234,6 @@ for cnt_step in range(MAX_PACE):
         # print("lk:",lk)
         if not sigma==sigma0:
             print("Sigma=",sigma," E=",E)
-            lastSigma=sigma
-            lastE=E
         # draw()
     if cnt_step % 10000 == 0:
         print("count step:", cnt_step)
