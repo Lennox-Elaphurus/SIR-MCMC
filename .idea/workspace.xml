@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ecab633-6cef-4190-bfe9-9cde1f35c95f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cases_obs_final.csv" beforeDir="false" afterPath="$PROJECT_DIR$/cases_obs_final.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gammaNew.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcmcSIR.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcmcSIR.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="158" column="65" lean-forward="true" selection-start-line="158" selection-start-column="6" selection-end-line="158" selection-end-column="65" />
+            <state relative-caret-position="82">
+              <caret line="165" column="36" selection-start-line="165" selection-start-column="4" selection-end-line="165" selection-end-column="36" />
               <folding>
                 <element signature="e#19#32#0" expanded="true" />
               </folding>
@@ -29,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/mcmcSIR.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="41">
-              <caret line="131" column="32" lean-forward="true" selection-start-line="131" selection-start-column="32" selection-end-line="131" selection-end-column="32" />
+              <caret line="97" column="8" lean-forward="true" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="8" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -81,6 +81,16 @@
       <find>log</find>
       <find>BETA</find>
       <find>fig</find>
+      <find>obs</find>
+      <find>lik</find>
+      <find>sim(</find>
+      <find>H1</find>
+      <find>rr</find>
+      <find>sim</find>
+      <find>Dlist</find>
+      <find>gammai</find>
+      <find>Gamma</find>
+      <find>N</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -286,7 +296,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49933422" visible="true" weight="0.3114504" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49933422" visible="true" weight="0.3908397" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.1389313" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -403,8 +413,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="158" column="65" lean-forward="true" selection-start-line="158" selection-start-column="6" selection-end-line="158" selection-end-column="65" />
+        <state relative-caret-position="82">
+          <caret line="165" column="36" selection-start-line="165" selection-start-column="4" selection-end-line="165" selection-end-column="36" />
           <folding>
             <element signature="e#19#32#0" expanded="true" />
           </folding>
@@ -414,7 +424,7 @@
     <entry file="file://$PROJECT_DIR$/mcmcSIR.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="41">
-          <caret line="131" column="32" lean-forward="true" selection-start-line="131" selection-start-column="32" selection-end-line="131" selection-end-column="32" />
+          <caret line="97" column="8" lean-forward="true" selection-start-line="97" selection-start-column="8" selection-end-line="97" selection-end-column="8" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>

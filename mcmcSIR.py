@@ -68,7 +68,7 @@ def sim(n1):
 
         # 在病例报告中引入随机性的代码如下；这里为了减少随机性，方差取了0.1
         Htem = (beta * S0 * I0 / pop) * dt * rr
-        H1 = int(norm.rvs(Htem,0.1,1)[0])
+        H1 = int(norm.rvs(Htem,1,1)[0])
 
         # 因为采用基于均值/方差的正态分布采样，可能出现负数，真实情况不可能出现，所以特殊处理为0
         if H1 <= 0 :
@@ -96,7 +96,7 @@ Dlist = list(df.loc[:,'cases'])
 # 但作为练习，gamma可以从21开始，仅仅体会一下目前系统的复杂性，以后如果用到由基础了就可以很好解决更复杂情况
 
 N = 5000
-gamma = 22
+gamma = 21
 Gamma = [gamma]
 sim0 = sim(Gamma[-1]) #模拟
 lk0 = lik(sim0,Dlist) #计算似然值
@@ -106,7 +106,7 @@ E=0.0001
 
 for i in range(N):
     # 参数随机游走；我采用了0.01的方差
-    gammai = norm.rvs(Gamma[-1],0.001,1)[0]
+    gammai = norm.rvs(Gamma[-1],0.01,1)[0]
 
     # simulation
     simi = sim(gammai)
@@ -120,6 +120,8 @@ for i in range(N):
     if random.random() < R:
         if abs(gamma-gammai)<E:
             Continue=Continue+1
+        else:
+            Continue =0
         gamma = gammai
         Gamma.append(gamma)
         LK.append(lki)
@@ -130,7 +132,21 @@ for i in range(N):
         print(i,gammai,lki,"Not accepted:",R)
 
 print("Last accepted",Gamma[-1])
+fn = r'cases_obs_final.csv'
+## observed data
+df = pd.read_csv(fn)
+H=sim(Gamma[-1])
+Dlist = list(df.loc[:,'cases'])
+# 作图，画出拟合情况
+plt.subplot(211)
+plt.plot(Tlist,Dlist, 'r')
+plt.plot(Tlist,H, 'b')
+plt.legend(['real','estimate'])
+plt.xlabel('Year')
+plt.ylabel('Population')
+plt.title("Gamma="+str(Gamma[-1]))
 # 作图，画出Gamma的优化过程
+plt.subplot(212)
 plt.scatter(LK,Gamma,c='r',marker='.',s= 20,edgecolor='none')
 # plt.plot(LK,Gamma,'r')
 plt.savefig(fig)
