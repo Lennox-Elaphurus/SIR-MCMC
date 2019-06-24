@@ -3,6 +3,7 @@ import random
 from scipy.stats import norm
 import math
 import matplotlib.pyplot as plt
+import pandas
 
 MAX_PACE=100000
 fig = r'simulation'
@@ -54,39 +55,48 @@ global ignore
 ignore=False
 
 
+
 def get_beta(index):
     return float(180 * (5 + 2 * math.sin(math.pi * index* dt + 5)))
 
-
-# global BETA
-# BETA=[get_beta(0)]
+global H
+Htem = (get_beta(0) * S0 * I0 / pop) * dt * reportRate
+H0 = float(norm.rvs(Htem,0.1,1)[0])
+H=[H0]
 global points
 points=[]
 
 
 def import_data(file_location):   # sir_case.csv
-# 读取x跟y
-    with open(file_location,"r") as file:
-        global points
-        # seperate data into items
-        pointlist=file.read()
-        pointlist=pointlist.replace(",", " ")
-        pointlist = pointlist.split()
-        temp=0
-        flag=True
-        for idx in range(2,len(pointlist)):
-            if flag:
-                temp=float(pointlist[idx])
-                flag=False
-            else:
-                points.append((float(temp),float(pointlist[idx])))
-                flag=True
+    df = pandas.read_csv(file_location)
+    Tlist = list(df.loc[:, 'time'])
+    Dlist = list(df.loc[:, 'cases'])
+    global points
+    for i in range(len(Tlist)):
+        points.append((float(Tlist[i]),float(Dlist[i])))
+# # 读取x跟y
+#     with open(file_location,"r") as file:
+#         global points
+#         # seperate data into items
+#         pointlist=file.read()
+#         pointlist=pointlist.replace(",", " ")
+#         pointlist = pointlist.split()
+#         temp=0
+#         flag=True
+#         for idx in range(2,len(pointlist)):
+#             if flag:
+#                 temp=float(pointlist[idx])
+#                 flag=False
+#             else:
+#                 points.append((float(temp),float(pointlist[idx])))
+#                 flag=True
 
 
 def estimate(this_gamma):  # directly write to global S,I,R
     global S0
     global I0
     global R0
+    global H0
     global S
     global Infe
     global R
@@ -94,6 +104,7 @@ def estimate(this_gamma):  # directly write to global S,I,R
     global pop
     global mu
     global dt
+    global H
     # state variable/list
     # print(type(R))
     S.clear()
@@ -102,6 +113,8 @@ def estimate(this_gamma):  # directly write to global S,I,R
     S.append(S0)
     Infe.append(I0)
     R.append(R0)
+    H.clear()
+    H.append(H0)
     # update state variables each day
     for i in range(1,int((END_YEAR - START_YEAR)/dt)+1):
         s1 = S[-1]
@@ -112,7 +125,8 @@ def estimate(this_gamma):  # directly write to global S,I,R
         s2 = s1 + (mu * pop - beta * s1 * i1 / pop - mu * s1) * dt
         i2 = i1 + (beta * s1 * i1 / pop - this_gamma * i1 - mu * i1) * dt
         r2 = r1 + (this_gamma * i1 - mu * r1) * dt
-        # BETA.append(beta)
+        h2 = float(norm.rvs(i2, 0.1, 1)) # 对预测值随机扰动
+        H.append(h2)
         S.append(s2)
         Infe.append(i2)
         R.append(r2)
@@ -120,7 +134,7 @@ def estimate(this_gamma):  # directly write to global S,I,R
 
 def get_likelihood(this_sigma):
     global points
-    global Infe
+    global H
     global reportRate
     global ignore
     lk2=0
@@ -128,10 +142,10 @@ def get_likelihood(this_sigma):
         try:
             # if points[i2][1] Infe[i2]*reportRate
             # lk2=lk2+float(norm.logpdf(points[i2][1], Infe[i2]*reportRate, 1000))
-            lk2 = lk2+abs(points[i2][1]-Infe[i2]*reportRate)**5
+            lk2 = lk2+abs(points[i2][1]-H[i2]*reportRate)**5
         except OverflowError:
             print("An OverflowError occurred in abs**5.")
-            ignore=True
+            ignore = True
             break
     lk2=lk2*1e-21  # just to decrease the lk
     # print("lk2",lk2)
@@ -140,7 +154,7 @@ def get_likelihood(this_sigma):
 
 def draw():
     global points
-    global Infe
+    global H
     global gamma
     global sigma
     global reportRate
@@ -153,12 +167,12 @@ def draw():
     for i in range(len(points)):
         t.append(points[i][0])
         real_i.append(points[i][1])
-        Infe[i]=Infe[i]*reportRate
+        H[i]=H[i]*reportRate
     plt.ion()# 绘图或者从磁盘读取图像并进行图像处理操作
     # plt.scatter(t,real_i,c='b',marker='.',s= 10,edgecolor='none')
     # plt.scatter(t,Infe,c='r',marker='.',s= 20,edgecolor='none')
     plt.plot(t,real_i, 'r')
-    plt.plot(t,Infe, 'b')
+    plt.plot(t,H, 'b')
     plt.legend(['real','estimate'])
     plt.savefig(fig)
     plt.xlabel('Year')
@@ -205,35 +219,34 @@ for cnt_step in range(MAX_PACE):
             Continue = Continue + 1
             if Continue % 5 == 0:  # 5 was set by hand
                 lastE=E
-                E=E/2
+                E=E/5
                 lastSigma=sigma
                 sigma = sigma /5  # 2 was set by hand
-            # if Continue % 20 == 0:
-            #     lastSigma = sigma
-            #     sigma = sigma / 2
-                # else:
-                #     E=1
+            if sigma<1:
+                sigma = sigma /5
                 # need to estimate again when sigma changed
                 estimate(lastGamma)
                 lastLk=get_likelihood(sigma)
                 print("Adjust sigma to ", sigma)
             if Continue > MIN_CONTINUE:
                 print("Stop by sufficiently accurate answer.")
-                print("Last accepted Ratio:", Ratio)
+                # print("Last accepted Ratio:", Ratio)
                 break
         else:
             Continue = 0
+            if sigma!= lastSigma:
+                print("Reset sigma to",lastSigma)
             sigma=lastSigma
             E=lastE
 
         lastGamma = gamma
         lastLk=lk
         GAMMA.append(lastGamma)
-        print("Accepted Ratio:", Ratio)
         print("Accepted gamma:",lastGamma)
+        # print("Accepted Ratio:", Ratio)
         # print("lk:",lk)
-        if not sigma==sigma0:
-            print("Sigma=",sigma," E=",E)
+        # if not sigma==sigma0:
+        #     print("Sigma=",sigma," E=",E)
         # draw()
     if cnt_step % 10000 == 0:
         print("count step:", cnt_step)
