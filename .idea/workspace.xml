@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ecab633-6cef-4190-bfe9-9cde1f35c95f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/SIR-MCMC.py" beforeDir="false" afterPath="$PROJECT_DIR$/SIR-MCMC.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulation.png" beforeDir="false" afterPath="$PROJECT_DIR$/simulation.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,14 +15,43 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="206" column="23" lean-forward="true" selection-start-line="206" selection-start-column="23" selection-end-line="206" selection-end-column="23" />
+            <state relative-caret-position="119">
+              <caret line="224" column="23" lean-forward="true" selection-start-line="224" selection-start-column="23" selection-end-line="224" selection-end-column="23" />
               <folding>
                 <element signature="e#19#32#0" expanded="true" />
-                <element signature="e#759#822#0" />
-                <element signature="e#935#1434#0" />
+                <element signature="e#953#1164#0" />
                 <element signature="e#1501#2278#0" />
-                <element signature="e#2317#2854#0" />
+                <element signature="e#2873#3700#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="70">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="70">
+              <caret line="1146" selection-start-line="1146" selection-end-line="1146" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcmcSIR.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,6 +100,17 @@
       <find>R0</find>
       <find>log</find>
       <find>BETA</find>
+      <find>fig</find>
+      <find>obs</find>
+      <find>lik</find>
+      <find>sim(</find>
+      <find>H1</find>
+      <find>rr</find>
+      <find>sim</find>
+      <find>Dlist</find>
+      <find>gammai</find>
+      <find>Gamma</find>
+      <find>N</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -88,11 +128,12 @@
         <option value="$PROJECT_DIR$/MCMC.py" />
         <option value="$PROJECT_DIR$/simulation.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/mcmcSIR.py" />
         <option value="$PROJECT_DIR$/SIR-MCMC.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="960" />
     <option name="width" value="960" />
     <option name="height" value="1030" />
@@ -102,13 +143,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -165,6 +207,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="mcmcSIR" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SIR-MCMC" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mcmcSIR.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="simulation" type="PythonConfigurationType" factoryName="Python">
       <module name="SIR-MCMC" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,6 +273,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.SIR-MCMC" />
+        <item itemvalue="Python.mcmcSIR" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.gamma" />
       </list>
@@ -233,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561039277818</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Update SIR-MCMC.py&#10;report rate: 0.23">
+      <created>1561211886471</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1561211886471</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -245,8 +316,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49933422" visible="true" weight="0.29923666" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.2" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49933422" weight="0.52519083" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.708397" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -301,7 +372,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update SIR-MCMC.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update SIR-MCMC.py" />
+    <MESSAGE value="Update SIR-MCMC.py&#10;report rate: 0.23" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update SIR-MCMC.py&#10;report rate: 0.23" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://F:/Academy/Python and Computational biology/17-20190617/simulation.py" />
@@ -339,20 +411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="206" column="23" lean-forward="true" selection-start-line="206" selection-start-column="23" selection-end-line="206" selection-end-column="23" />
-          <folding>
-            <element signature="e#19#32#0" expanded="true" />
-            <element signature="e#759#822#0" />
-            <element signature="e#935#1434#0" />
-            <element signature="e#1501#2278#0" />
-            <element signature="e#2317#2854#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MCMC.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
@@ -373,5 +431,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mcmcSIR.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="1146" selection-start-line="1146" selection-end-line="1146" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SIR-MCMC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="224" column="23" lean-forward="true" selection-start-line="224" selection-start-column="23" selection-end-line="224" selection-end-column="23" />
+          <folding>
+            <element signature="e#19#32#0" expanded="true" />
+            <element signature="e#953#1164#0" />
+            <element signature="e#1501#2278#0" />
+            <element signature="e#2873#3700#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="Copyright.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
