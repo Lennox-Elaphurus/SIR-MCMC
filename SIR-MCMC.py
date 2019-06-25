@@ -144,7 +144,7 @@ def get_likelihood(this_sigma):
             # lk2=lk2+float(norm.logpdf(points[i2][1], Infe[i2]*reportRate, 1000))
             lk2 = lk2+abs(points[i2][1]-H[i2]*reportRate)**5
         except OverflowError:
-            print("An OverflowError occurred in abs**5.")
+            # print("An OverflowError occurred in abs**5.")
             ignore = True
             break
     lk2=lk2*1e-21  # just to decrease the lk
@@ -204,7 +204,7 @@ for cnt_step in range(MAX_PACE):
         Ratio=lastLk/lk
     except OverflowError:
         # directly accept
-        print("An OverflowError occurred in exp.")
+        # print("An OverflowError occurred in exp.")
         # print("lastLk:", lastLk, "lk:", lk)
         # print("lastLk - lk", lastLk - lk)
         if lk<lastLk:
@@ -222,9 +222,9 @@ for cnt_step in range(MAX_PACE):
                 E=E/5
                 lastSigma=sigma
                 sigma = sigma /5  # 2 was set by hand
-            if sigma<1:
-                sigma = sigma /5
-                # need to estimate again when sigma changed
+                if sigma<1:
+                    sigma = sigma /5
+                    # need to estimate again when sigma changed
                 estimate(lastGamma)
                 lastLk=get_likelihood(sigma)
                 print("Adjust sigma to ", sigma)
