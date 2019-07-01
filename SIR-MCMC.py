@@ -18,7 +18,7 @@ GAMMA=[]
 global reportRate
 reportRate=0.23
 global sigma
-sigma=5
+sigma=10
 sigma0=sigma
 lastSigma=sigma
 E=1   # 3我之前不能收敛是因为这个调得太小了
@@ -223,6 +223,7 @@ for cnt_step in range(MAX_PACE):
                 lastSigma=sigma
                 sigma = sigma /5  # 2 was set by hand
                 if sigma<1:
+                    lastSigma = sigma
                     sigma = sigma /5
                     # need to estimate again when sigma changed
                 estimate(lastGamma)
