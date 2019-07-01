@@ -11,7 +11,7 @@ START_YEAR = 2008
 END_YEAR=2020
 dt = 1/52
 gamma = 0
-lastGamma =50 # 22
+lastGamma =70 # 22
 Ratio=0
 GAMMA=[]
 
@@ -25,7 +25,7 @@ E=1   # 3我之前不能收敛是因为这个调得太小了
 E0=E
 lastE=E
 Continue=0
-MIN_CONTINUE=20
+MIN_CONTINUE=15
 
 global mu
 mu = 1/50
@@ -171,11 +171,11 @@ def draw():
     plt.show()
     plt.pause(5)
     plt.savefig(fig)
-    # plt.close()
-    # plt.scatter(GAMMA,LK,s=1)
-    # plt.show()
-    # plt.pause(5)
-    # plt.savefig("gamma-lk")
+    plt.close()
+    plt.scatter(GAMMA,LK,s=1)
+    plt.show()
+    plt.pause(5)
+    plt.savefig("gamma-lk")
 
 
 
@@ -211,15 +211,19 @@ for cnt_step in range(MAX_PACE):
         if abs(gamma - lastGamma) < E:
             Continue = Continue + 1
             if Continue % 5 == 0:  # 2 was set by hand
+                divide=5
+                if sigma < 1:
+                    divide=2
                 lastE=E
-                E=E/5
+                E=E/divide
                 lastSigma=sigma
-                sigma = sigma /5  # 5 was set by hand
-                if lastSigma>2:
-                    lastSigma=2
-                if sigma<1:
-                    lastSigma = sigma
-                    sigma = sigma /5
+                sigma = sigma /divide  # 5 was set by hand
+                if lastSigma>1:
+                    lastSigma=1
+                    sigma=1
+                # if 1 < sigma <= 2:
+                #     lastSigma = sigma
+                #     sigma = sigma / 1.1
                     # need to estimate again when sigma changed
                 estimate(lastGamma)
                 lastLk=get_likelihood(sigma)
